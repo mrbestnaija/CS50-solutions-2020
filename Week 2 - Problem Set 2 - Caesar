@@ -1,0 +1,70 @@
+#include <cs50.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <stdlib.h>
+#include <string.h>
+
+//Define special function called "check_valid_key"
+bool check_valid_key(string s);
+
+//Introduce Command-line-arguements
+int main(int argc, string argv[])
+{
+    //condition for checking validity of input by the user
+    if (argc != 2 || !check_valid_key (argv[1]))
+    {
+        //Error Notification for wrong input
+        printf("Usage: ./caesar Key");
+
+        //Return code for error
+        return 1;
+    }
+
+    //Assign the input at index position 2 of the Command-line-arguement
+    int key = atoi(argv[1]);
+
+    //Request for a plaintext and assign the input to the variable "k"
+    string plaintext = get_string("plaintext: ");
+
+    //Print out the output
+    printf("ciphertext: ");
+
+    //Iterate on each letter or character accepted as valid
+    for (int i = 0, len = strlen(plaintext); i < len; i++)
+    {
+        //Checking for small letter alphabets and applying the derive formulae
+        if (islower(plaintext[i]))
+        {
+            printf("%c", (plaintext[i] - 'a' + key) % 26 + 'a');
+        }
+        //Checking for Capital letter alphabets and applying the derive formulae
+        else if (isupper(plaintext[i]))
+        {
+            printf("%c", (plaintext[i] - 'A' + key) % 26 + 'A');
+        }
+        //print non-aphabetic charactersw without any change
+        else
+        {
+            printf("%c", plaintext[i]);
+        }
+        //Print a new line
+    }
+    printf("\n");
+}
+
+//The details of the special function defined above for checking valid key
+bool check_valid_key(string s)
+
+{
+    //Iterate on each character of the string
+    for (int i = 0, len = strlen(s); i < len; i ++)
+
+        //condition for returning a false output
+        if (!isdigit(s[i]))
+
+
+            return false;
+
+        //condition for returning a true output
+        return true;
+}
