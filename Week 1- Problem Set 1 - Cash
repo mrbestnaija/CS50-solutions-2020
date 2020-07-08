@@ -1,0 +1,54 @@
+#include <cs50.h>
+#include <stdio.h>
+#include <math.h>
+
+//initiate the programme
+
+int main(void)
+
+{
+//introduce the variable called dollars
+
+    float dollars;
+//create a do-while loop to prompt the user for an input or cash that requires change or balance
+
+    do
+
+    {
+
+        dollars = get_float("get balance: ");
+
+//iterate the process of getting request for balnce
+
+     } while(dollars < 0);
+
+//introduce the variables cents and coins while defining the relative scales
+
+     int cents = round(dollars * 100);
+     int coins = 0;
+//introduce the variable denomination as a list of all available balance
+
+     int denomination [] = {25, 10, 5, 1};
+
+     //define the number of available denomination
+
+     int size = 4;
+
+     //set a counter
+
+     for (int i = 0; i < size; i++)
+
+    {
+        //the division of the money in cents and repetition of the process by the next smaller denomination
+
+        coins += cents / denomination [i];
+        cents %= denomination[i];
+
+    }
+     
+     //print your final answer and use a place holder as it is unknown until calculated
+
+     printf("%i\n", coins);
+       
+
+}
