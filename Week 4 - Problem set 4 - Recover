@@ -1,0 +1,73 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[])
+{
+    // check for correctness of file
+    if (argc != 2)
+    {
+        fprintf(stderr, "Usage: ./recover image\n");
+        return 1;
+    }
+
+    // check if memory card is successfully opened
+    FILE *file = fopen(argv[1], "r");
+    if (file == NULL)
+    {
+    //Remind user to input one command-line arguement
+        fprintf(stderr, "Could not open file %s.\n", argv[1]);
+        return 1;
+    }
+
+    //create variables for memory allocation
+    FILE *img;
+    char filename[7];
+
+//create chunk of memory space to be searched and give it a memory allocation of 512 bits
+    unsigned char *bf = malloc(512);
+    int end = 1000;
+    int counter = 0;
+//Condition for searching the arry of memory in the "card.raw"
+    while (fread(bf, 512, 1, file))
+    {
+        // new jpg file found
+        if (bf[0] == 0xff && bf[1] == 0xd8 && bf[2] == 0xff && (bf[3] & 0xf0) == 0xe0)
+        {
+            // close previous jpg file if it exists
+            if (counter > 0)
+            {
+                fclose(img);
+            }
+
+            // create filename
+            sprintf(filename, "%03d.jpg", counter);
+
+            // open new image that can be written into
+            img = fopen(filename, "w");
+
+            // check if jpg file is successfully created
+            if (img == NULL)
+            {
+                //Prevent memory leaking
+                fclose(file);
+                free(bf);
+                fprintf(stderr, "Could not create output JPG %s", filename);
+                return 1;
+            }
+
+            counter++;
+        }
+
+        //if any jpg file exists writes on the file currently opened
+        if (counter > 0)
+        {
+            fwrite(bf, 512, 1, img);
+        }
+    }
+
+    //free-up memory and closes files
+    fclose(img);
+    fclose(file);
+    free(bf);
+    return 0;
+}
