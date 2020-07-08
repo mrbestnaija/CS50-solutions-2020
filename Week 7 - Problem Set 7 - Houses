@@ -1,0 +1,20 @@
+#A program that prints a list of students for a given house in alphabetical order
+
+from cs50 import SQL
+from sys import argv
+
+# Check that user input correct arguments, otherwise exit the program
+if len(argv) < 2:
+    print("usage error, roster.py houseName")
+    exit()
+
+# Open the database and execute a query that list all the students from a particular house in alphabetical order
+db = SQL("sqlite:///students.db")
+students = db.execute("SELECT * FROM students WHERE house = (?) ORDER BY last", argv[1])
+
+# Print each name showing their information and their middle name if available
+for names in students:
+    if student['middle'] != None:
+        print(f"{student['first']} {student['middle']} {student['last']}, born {student['birth']}")
+    else:
+        print(f"{student['first']} {student['last']}, born {student['birth']}")
