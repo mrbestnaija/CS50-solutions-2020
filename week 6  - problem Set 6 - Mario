@@ -1,0 +1,12 @@
+#This programme prints a half-pyramid of a specified Height
+from cs50 import get_int
+
+# Asks for user input until it receives a valid one
+Height = 0
+while (Height > 8 or Height < 1):
+    Height = get_int("Height:\n")
+
+# iterate and print a pyramid of hashes
+for i in range(1, Height + 1):
+    print(" " * (Height - i), end="")
+    print("#" * (i))
