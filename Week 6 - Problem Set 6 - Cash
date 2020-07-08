@@ -1,0 +1,29 @@
+#A program that calculates the minimum number of coins required to give a user change.
+
+from cs50 import get_float
+
+# Ask user for valid input
+naira = 0
+while (naira <= 0):
+    naira = get_float("Change to be given: ")
+
+coins = 0
+kobo = round(naira * 100, 0)
+
+# count coins until the change owed equals zero
+while (kobo > 0):
+    if (kobo >= 25):
+        kobo -= 25
+        coins += 1
+    elif (kobo >= 10):
+        kobo -= 10
+        coins += 1
+    elif (kobo >= 5):
+        kobo -= 5
+        coins += 1
+    else:
+        kobo -= 1
+        coins += 1
+
+# displays the total number of coins needed to give the change
+print(f"you are owed {coins} coins")
