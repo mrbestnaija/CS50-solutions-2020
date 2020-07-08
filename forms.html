@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Login Page</title>
+
+      <!-- Some lines of javascript that prompt the user to input valid credentials -->
+          <script>
+      function salute()
+      {
+        let choice = document.querySelector("#exampleInputEmail1").value;
+        if (choice === '')
+        {
+            choice = "Please kindly input a valid email address";
+        }
+        alert ("Please try again " + choice);
+
+      }
+
+    </script>
+    </head>
+
+    <!-- The main body of the script -->
+    <body>
+
+<div class="alert alert-primary" role="alert">
+  Disclaimer! We do not have proprietary right of most contents here but we hope to share. Read further here <a href="https://support.google.com/?hl=en" class="alert-link">Technical  Support available</a>. Give it try.
+</div>
+
+<div class="container">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#">Basics of Computer</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="homepage.html">Home Page</a>
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Networking</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="http.html">HTTP</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="html.html">HTML</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="forms.html">Login</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <h1>Login</h1>
+
+        <ul>
+          <li>
+            Register on out Platform to get more training and tracking of progress.
+          </li>
+            <ul>
+              <li>
+                Old users can login using their credentials or contact Google technical service support <a href="https://support.google.com/?hl=en" class="alert-link">click here</a>.
+</div>.
+              </li>
+              <li>
+                Input a combination numbers, alphabets and special character for the Login  </li>
+            </ul>
+        </ul>
+
+        <form onsubmit="salute(); return flase;">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </div>
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+</div>
+    </body>
+</html>
